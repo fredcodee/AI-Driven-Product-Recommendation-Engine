@@ -1,0 +1,4 @@
+.venv
+.env
+amazonProductReviews.csv
+node_modules
