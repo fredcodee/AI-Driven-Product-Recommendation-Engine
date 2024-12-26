@@ -1,9 +1,10 @@
 const express = require('express');
-const { getRecommendations } = require('../controllers/recommendation');
+const recommendation = require('../controllers/recommendation');
 
 const router = express.Router();
 
-// Define a route for recommendations
-router.get('/recommendations', getRecommendations);
+router.get('/health', recommendation.healthCheck);
+router.get('/build-model', recommendation.buildModel);
+router.get('/recommendations/:userId', recommendation.recommendations);
 
 module.exports = router;

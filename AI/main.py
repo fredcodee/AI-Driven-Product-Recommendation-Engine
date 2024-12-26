@@ -5,6 +5,8 @@ from engine.similarity import compute_similarity
 from engine.recommend import recommend_products
 from engine.save_model import save_similarity_model
 from engine.load_model import load_similarity_model
+import pickle
+import json
 
 def build_and_save_model(data_path, similarity_model_path):
     """Complete workflow for building the recommendation engine."""
@@ -38,7 +40,6 @@ if __name__ == "__main__":
         interaction_matrix, _ = build_and_save_model(data_path, similarity_model_path)
 
         # Save interaction_matrix for later use (if needed)
-        import pickle
         with open('interaction_matrix.pkl', 'wb') as f:
             pickle.dump(interaction_matrix, f)
 
@@ -50,7 +51,7 @@ if __name__ == "__main__":
             interaction_matrix = pickle.load(f)
 
         recommendations = generate_recommendations(user_id, interaction_matrix, similarity_model_path)
-        print(f"Recommendations for user {user_id}: {recommendations}")
+        print(json.dumps(recommendations)) 
 
     else:
         print("Invalid mode. Use 'build' to train the model or 'recommend' to get recommendations.")

@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors =  require('cors')
 const bodyParser = require('body-parser');
-const routes = require('./routes'); // Import routes
+const routes = require('./routes/index');
 
 const app = express();
 
@@ -13,7 +13,6 @@ app.use(cors());
 app.use('/api', routes);
 
 // Start the server
-const PORT = 3000;
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
     console.log("server is up on port: " + process.env.PORT)
 });
