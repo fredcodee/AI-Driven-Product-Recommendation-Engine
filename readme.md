@@ -5,7 +5,7 @@ recommendation system that can be integrated into an e-commerce platform
 ### Stack:
  - AI/ML: Python ( Scikit-learn, TensorFlow/Keras).
 - Backend: Node.js with Express.js for APIs.
-- Database: MongoDB or PostgreSQL for product and user data.
+- 3RD-PARTY-API: https://axesso.developer.azure-api.net/ for amazon api access
 - Frontend: React Native for a mobile app.
 
 # Documentations
