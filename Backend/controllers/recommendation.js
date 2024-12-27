@@ -31,13 +31,9 @@ const recommendations = async (req, res) => {
 
   try {
     const recommendations = await getRecommendations(userId);
-    //get amazon product details for one of the recommendations
-    const productDetails = await getProductDetails(recommendations[0]);
-    res.status(200).json({ userId, recommendations, productDetails });
-
     //get amazon product details for all recommendations
-    // const productDetails = await Promise.all(recommendations.map(getProductDetails));
-    // res.status(200).json({ userId, recommendations, productDetails });
+    const productDetails = await Promise.all(recommendations.map(getProductDetails));
+    res.status(200).json({ userId, recommendations, productDetails });
   } catch (error) {
     console.error('Error getting recommendations:', error);
     res.status(500).json({ error: 'Internal Server Error' });
