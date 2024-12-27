@@ -1,5 +1,7 @@
 const axios = require('axios');
 
+
+
 const getProductDetails = async(productId) =>{
     try {
         const apiKey = process.env.AXESSO_AMAZON_API_KEY;
@@ -16,11 +18,11 @@ const getProductDetails = async(productId) =>{
         let productDetails = response.data
         productDetails={
             id: productDetails.asin,
-            name: productDetails.productTitle,
-            description: productDetails.productDescription,
+            name: trimText(productDetails.productTitle, 50),
+            description: trimText(productDetails.productDescription, 100),
             image: productDetails.imageUrlList[0], //just using the first image
             price: productDetails.price,
-            rating: productDetails.productRating, // "4.5 out of 5 stars"
+            rating: productDetails.productRating,
             link:`https://www.amazon.com/dp/${productId}?psc=1`
         }
         return productDetails
@@ -30,6 +32,11 @@ const getProductDetails = async(productId) =>{
         throw new Error(`Failed to fetch product details for product ID ${productId}, error: ${error.message}`);
     }
 }
+
+const trimText = (text, maxLength) => {
+    if (!text) return '';
+    return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+};
 
 module.exports= {
     getProductDetails

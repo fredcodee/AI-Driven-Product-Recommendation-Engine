@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, Image,ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Image, ActivityIndicator, TouchableOpacity, Linking } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from './App';
 import axios from 'axios';
@@ -14,39 +14,24 @@ interface Product {
   description: string;
   image: string;
   price: number;
+  rating: string;
+  link:  string;
 }
-
-const dummyProducts: Product[] = [
-  { id: '1', name: 'Product 1', description: 'Description for Product 1', image: 'https://via.placeholder.com/100', price: 19.99 },
-  { id: '2', name: 'Product 2', description: 'Description for Product 2', image: 'https://via.placeholder.com/100', price: 29.99 },
-  { id: '3', name: 'Product 3', description: 'Description for Product 3', image: 'https://via.placeholder.com/100', price: 39.99 },
-  { id: '4', name: 'Product 4', description: 'Description for Product 4', image: 'https://via.placeholder.com/100', price: 49.99 },
-  { id: '5', name: 'Product 5', description: 'Description for Product 5', image: 'https://via.placeholder.com/100', price: 59.99 },
-];
 
 const ProductListPage: React.FC<ProductListPageProps> = ({ route }) => {
   const { userId , userName} = route.params;
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // useEffect(() => {
-  //   fetchRecommendedProducts();
-  // }, []);
-
   useEffect(() => {
-    // Simulating API call with dummy data
-    setTimeout(() => {
-      setRecommendedProducts(dummyProducts);
-      setLoading(false);
-    }, 1000);
+    fetchRecommendedProducts();
   }, []);
-
 
   const fetchRecommendedProducts = async () => {
     try {
       setLoading(true);
       const response = await axios.get<Product[]>(`http://localhost:8088/api/recommendations/${userId}`);
-      setRecommendedProducts(response.data);
+      setRecommendedProducts(response.data.productDetails);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching recommended products:', error);
@@ -56,15 +41,22 @@ const ProductListPage: React.FC<ProductListPageProps> = ({ route }) => {
     }
   };
 
+  const handleProductPress = (link: string) => {
+    Linking.openURL(link).catch((err) => console.error('An error occurred', err));
+  };
+
   const renderProduct = ({ item }: { item: Product }) => (
-    <View style={styles.productItem}>
-      <Image source={{ uri: item.image }} style={styles.productImage} />
-      <View style={styles.productInfo}>
-        <Text style={styles.productName}>{item.name}</Text>
-        <Text style={styles.productDescription}>{item.description}</Text>
-        <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
+    <TouchableOpacity onPress={() => handleProductPress(item.link)}>
+      <View style={styles.productItem}>
+        <Image source={{ uri: item.image }} style={styles.productImage} />
+        <View style={styles.productInfo}>
+          <Text style={styles.productName}>{item.name}</Text>
+          <Text style={styles.productDescription}>{item.description}</Text>
+          <Text style={styles.productRating}>{item.rating}</Text>
+          <Text style={styles.productPrice}>${item.price.toFixed(2)}</Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   if (loading) {
@@ -120,6 +112,14 @@ const styles = StyleSheet.create({
   productDescription: {
     fontSize: 14,
     color: '#666',
+  },
+  productRating: {
+    fontSize: 14,
+    color: '#4DA1A9',
+  },
+  productPrice: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
