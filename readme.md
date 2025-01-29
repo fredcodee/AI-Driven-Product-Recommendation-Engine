@@ -97,3 +97,8 @@ Fetch personalized product recommendations for a specific user, including detail
 - A/B Testing: Implement A/B testing to evaluate recommendation effectiveness.
 - User Feedback Integration: Use explicit feedback (e.g., likes, dislikes) to refine recommendations.
 - This documentation provides a simple guide to understand and utilize the recommendation engine effectively. Let me know if you'd like to include more technical details or workflows!
+
+
+# App view
+![alt text](https://github.com/fredcodee/TeamManagement/blob/main/AppImages/homepage.jpg)
+![alt text](https://github.com/fredcodee/TeamManagement/blob/main/AppImages/homepage.jpg)

@@ -16,11 +16,11 @@ interface UserAvatar {
 }
 
 const userAvatars: UserAvatar[] = [
-  { id: 1, image: avatar, amazonId:"A1Z3YJF1S8Z1M3", name:'Alice'},
-  { id: 2, image: avatar, amazonId:"ALDXDYEGKB27G ",name:'James'},
-  { id: 3, image: avatar, amazonId:"A15LOGO6NBSI6B ",  name:'John'  },
-  { id: 4, image: avatar, amazonId:"A23LX12CA3G4FG ", name:'Emily'},
-  { id: 5, image: avatar, amazonId:"A3TV7QFYXAG130 ", name:'Michael'}
+  { id: 1, image: 'https://randomuser.me/api/portraits/women/1.jpg', amazonId:"A1Z3YJF1S8Z1M3", name:'Alice'},
+  { id: 2, image: 'https://randomuser.me/api/portraits/men/1.jpg', amazonId:"ALDXDYEGKB27G ",name:'James'},
+  { id: 3, image: 'https://randomuser.me/api/portraits/men/1.jpg', amazonId:"A15LOGO6NBSI6B ",  name:'John'  },
+  { id: 4, image: 'https://randomuser.me/api/portraits/women/1.jpg', amazonId:"A23LX12CA3G4FG ", name:'Emily'},
+  { id: 5, image: 'https://randomuser.me/api/portraits/men/1.jpg', amazonId:"A3TV7QFYXAG130 ", name:'Michael'}
 ];
 
 const HomePage: React.FC<HomePageProps> = ({ navigation }) => {
