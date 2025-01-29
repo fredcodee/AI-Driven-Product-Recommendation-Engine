@@ -1,5 +1,5 @@
 # AI-Driven Product Recommendation Engine
-A recommendation engine that delivers personalized product suggestions in real-time for an e-commerce platform.
+A React- native app for recommendation engine that delivers personalized product suggestions in real-time for an e-commerce platform.
 recommendation system that can be integrated into an e-commerce platform
 
 ### Stack:
