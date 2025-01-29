@@ -100,5 +100,8 @@ Fetch personalized product recommendations for a specific user, including detail
 
 
 # App view
-![alt text](https://github.com/fredcodee/TeamManagement/blob/main/AppImages/homepage.jpg)
-![alt text](https://github.com/fredcodee/TeamManagement/blob/main/AppImages/homepage.jpg)
+![alt text](https://github.com/fredcodee/AI-Driven-Product-Recommendation-Engine/blob/main/appviewImages/view1.jpg)
+![alt text](https://github.com/fredcodee/AI-Driven-Product-Recommendation-Engine/blob/main/appviewImages/view2.jpg)
+
+#App Video presentation
+https://photos.app.goo.gl/7Czh32yPqjbaFEZg6
